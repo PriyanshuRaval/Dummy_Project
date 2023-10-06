@@ -6,6 +6,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.example.mysplashscreen.Screens.ForgetPasswordScreen
 import com.example.mysplashscreen.Screens.HomeScreen
 import com.example.mysplashscreen.Screens.LoginScreen
 import com.example.mysplashscreen.Screens.SignUpScreen
@@ -34,6 +35,9 @@ fun PostOfficeApp(){
                 }
                 is Screen.HomeScreen -> {
                     HomeScreen()
+                }
+                is Screen.ForgetPasswordScreen -> {
+                    ForgetPasswordScreen()
                 }
             }
             

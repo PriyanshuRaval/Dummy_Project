@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.mysplashscreen.data.login.LoginUIEvent
 import com.example.mysplashscreen.data.login.LoginUIState
 import com.example.mysplashscreen.data.login.LoginViewModel
+import com.example.mysplashscreen.data.rules.Validator
 import com.example.mysplashscreen.navigation.PostOfficeAppRouter
 import com.example.mysplashscreen.navigation.Screen
 import com.google.firebase.auth.FirebaseAuth
@@ -16,8 +17,9 @@ class ForgetViewModel : ViewModel() {
 
     var forgetUIState = mutableStateOf(ForgetUIState())
 
-    var forgetInProgress = mutableStateOf(false)
+    var allValidationsPasses = mutableStateOf(false)
 
+    var forgetInProgress = mutableStateOf(false)
 
     fun onEvent(event : ForgetUIEvent) {
         when (event) {
@@ -30,6 +32,7 @@ class ForgetViewModel : ViewModel() {
                 forgetPassword()
             }
         }
+        validateEmailWithRules()
     }
 
     private fun forgetPassword() {
@@ -53,9 +56,20 @@ class ForgetViewModel : ViewModel() {
             .addOnFailureListener {
                 Log.d(TAG,"Inside_forgetPassword_Failure")
                 Log.d(TAG,"${it.localizedMessage}")
-
             }
     }
 
+    private fun validateEmailWithRules() {
+        val emailResult = Validator.validateEmail(
+            email = forgetUIState.value.email
+        )
+
+        forgetUIState.value = forgetUIState.value.copy(
+            emailError = emailResult.status
+        )
+
+        allValidationsPasses.value = emailResult.status
+
+    }
 
 }
