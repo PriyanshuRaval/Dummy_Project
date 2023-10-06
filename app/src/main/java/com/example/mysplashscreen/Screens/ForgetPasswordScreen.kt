@@ -3,7 +3,9 @@ package com.example.mysplashscreen.Screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -18,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mysplashscreen.R
+import com.example.mysplashscreen.components.ButtonComponent
 import com.example.mysplashscreen.components.HeadingTextComponent
 import com.example.mysplashscreen.components.MyTextFieldComponent
 import com.example.mysplashscreen.components.NormalTextComponent
@@ -43,15 +46,32 @@ fun ForgetPasswordScreen(forgetViewModel: ForgetViewModel = viewModel()){
                 .fillMaxSize()
                 .align(Alignment.Center)){
 
+                Spacer(Modifier.height(100.dp))
+
+
                 HeadingTextComponent(value = stringResource(id = R.string.forgot_password))
 
                 NormalTextComponent(value = stringResource(R.string.Forget_text))
+
+                Spacer(Modifier.height(40.dp))
+
 
                 MyTextFieldComponent(labelValue = stringResource(id = R.string.email), painterResource = painterResource(
                     id = R.drawable.message), onTextSelected = {
                     forgetViewModel.onEvent(ForgetUIEvent.EmailChanged(it))
                 },
                     errorStatus = forgetViewModel.forgetUIState.value.emailError
+                )
+
+                Spacer(Modifier.height(60.dp))
+
+
+                ButtonComponent(
+                    value = stringResource(R.string.send_password_link),
+                    onButtonClicked = {
+                        forgetViewModel.onEvent(ForgetUIEvent.ForgetButtonClicked)
+                    },
+                    isEnabled = forgetViewModel.allValidationsPasses.value
                 )
             }
         }
