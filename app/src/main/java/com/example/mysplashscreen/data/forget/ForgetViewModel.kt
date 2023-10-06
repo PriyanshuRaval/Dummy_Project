@@ -31,6 +31,10 @@ class ForgetViewModel : ViewModel() {
             is ForgetUIEvent.ForgetButtonClicked -> {
                 forgetPassword()
             }
+
+            else -> {
+
+            }
         }
         validateEmailWithRules()
     }

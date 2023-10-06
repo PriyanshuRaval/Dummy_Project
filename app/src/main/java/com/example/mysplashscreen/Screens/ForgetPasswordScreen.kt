@@ -44,6 +44,7 @@ fun ForgetPasswordScreen(forgetViewModel: ForgetViewModel = viewModel()){
                 .align(Alignment.Center)){
 
                 HeadingTextComponent(value = stringResource(id = R.string.forgot_password))
+
                 NormalTextComponent(value = stringResource(R.string.Forget_text))
 
                 MyTextFieldComponent(labelValue = stringResource(id = R.string.email), painterResource = painterResource(

@@ -70,7 +70,11 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()){
                 Spacer(Modifier.height(40.dp))
 
 
-                ClickableUnderlineTextComponent(value = stringResource(id = R.string.forgot_password))
+                ClickableUnderlineTextComponent(
+                    value = stringResource(id = R.string.forgot_password), onTextSelected = {
+                    PostOfficeAppRouter.navigate_to(Screen.ForgetPasswordScreen)
+                }
+                )
 
                 Spacer(Modifier.height(40.dp))
 

@@ -340,18 +340,36 @@ fun ClickableLoginTextComponent(tryingToLogin : Boolean = true,onTextSelected : 
 }
 
 @Composable
-fun ClickableUnderlineTextComponent(value:String){
-    Text(text = value,
+fun ClickableUnderlineTextComponent(value:String,onTextSelected: (String) -> Unit){
+    val initialText = " "
+    val forgetPasswordText ="Forget Your Password?"
+
+    val annotatedString = buildAnnotatedString {
+        append(initialText)
+        withStyle(style = SpanStyle(color = Primary)) {
+            pushStringAnnotation(tag = forgetPasswordText, annotation = forgetPasswordText)
+            append(forgetPasswordText)
+        }
+    }
+
+    ClickableText(
         modifier = Modifier
             .fillMaxWidth()
             .heightIn(min = 40.dp),
         style = TextStyle(
-            fontSize = 18.sp,
+            fontSize = 24.sp,
             fontWeight = FontWeight.Normal,
             fontStyle = FontStyle.Normal
-        )
-        , color = GrayColor,
-        textAlign = TextAlign.Center,
-        textDecoration = TextDecoration.Underline
+        ),
+        text = annotatedString, onClick = {offset ->
+            annotatedString.getStringAnnotations(offset,offset)
+                .firstOrNull()?.also {span ->
+                    Log.d("ClickableTextComponent","{${span.item}}")
+
+                    if(span.item == forgetPasswordText){
+                        onTextSelected(span.item)
+                    }
+                }
+        }
     )
 }
