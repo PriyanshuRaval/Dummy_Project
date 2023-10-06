@@ -63,7 +63,7 @@ fun ForgetPasswordScreen(forgetViewModel: ForgetViewModel = viewModel()){
                     errorStatus = forgetViewModel.forgetUIState.value.emailError
                 )
 
-                Spacer(Modifier.height(60.dp))
+                Spacer(Modifier.height(40.dp))
 
 
                 ButtonComponent(
