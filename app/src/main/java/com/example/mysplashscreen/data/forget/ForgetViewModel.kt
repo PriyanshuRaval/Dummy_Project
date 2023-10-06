@@ -65,6 +65,7 @@ class ForgetViewModel(application: Application) : AndroidViewModel(application) 
             .addOnFailureListener {
                 Log.d(TAG,"Inside_forgetPassword_Failure")
                 Log.d(TAG,"${it.localizedMessage}")
+                Toast.makeText(getApplication(), "${it.localizedMessage}", Toast.LENGTH_SHORT).show()
             }
     }
 

@@ -21,7 +21,6 @@ private class ComposableBackNavigationHandler(enabled: Boolean) : OnBackPressedC
     override fun handleOnBackPressed() {
         onBackPressed()
     }
-
 }
 
 @Composable
