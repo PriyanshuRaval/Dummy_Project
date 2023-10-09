@@ -52,14 +52,14 @@ fun SignUpScreen(signupViewModel: SignupViewModel = viewModel()){
                     id = R.drawable.profile), onTextSelected = {
                     signupViewModel.onEvent(SignupUIEvent.FirstNameChanged(it))
                 },
-                    errorStatus = signupViewModel.registrationUIState.value.firstNameError
+                    errorStatus = signupViewModel.signupUIState.value.firstNameError
                 )
 
                 MyTextFieldComponent(labelValue = stringResource(id = R.string.last_name), painterResource = painterResource(
                     id = R.drawable.profile), onTextSelected = {
                     signupViewModel.onEvent(SignupUIEvent.LastNameChanged(it))
                 },
-                    errorStatus = signupViewModel.registrationUIState.value.lastNameError
+                    errorStatus = signupViewModel.signupUIState.value.lastNameError
                 )
 
                 MyTextFieldComponent(labelValue = stringResource(id = R.string.email), painterResource = painterResource(
@@ -67,7 +67,7 @@ fun SignUpScreen(signupViewModel: SignupViewModel = viewModel()){
                     onTextSelected = {
                         signupViewModel.onEvent(SignupUIEvent.EmailChanged(it))
                     },
-                    errorStatus = signupViewModel.registrationUIState.value.emailError
+                    errorStatus = signupViewModel.signupUIState.value.emailError
                 )
 
                 PasswordTextFieldComponent(labelValue = stringResource(id = R.string.password), painterResource = painterResource(
@@ -75,7 +75,7 @@ fun SignUpScreen(signupViewModel: SignupViewModel = viewModel()){
                     onTextSelected = {
                         signupViewModel.onEvent(SignupUIEvent.PasswordChanged(it))
                     },
-                    errorStatus = signupViewModel.registrationUIState.value.passwordError
+                    errorStatus = signupViewModel.signupUIState.value.passwordError
                 )
 
                 CheckboxComponent(

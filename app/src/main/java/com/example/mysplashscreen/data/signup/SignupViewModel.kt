@@ -3,7 +3,6 @@ package com.example.mysplashscreen.data.signup
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.example.mysplashscreen.data.RegistrationUIState
 import com.example.mysplashscreen.data.rules.Validator
 import com.example.mysplashscreen.navigation.PostOfficeAppRouter
 import com.example.mysplashscreen.navigation.Screen
@@ -14,7 +13,7 @@ class SignupViewModel : ViewModel() {
 
     private val TAG = SignupViewModel::class.simpleName
 
-    var registrationUIState = mutableStateOf(RegistrationUIState())
+    var signupUIState = mutableStateOf(SignupUIState())
 
     var allValidationsPasses = mutableStateOf(false)
 
@@ -23,25 +22,25 @@ class SignupViewModel : ViewModel() {
     fun onEvent(event: SignupUIEvent){
         when(event){
             is SignupUIEvent.FirstNameChanged -> {
-                registrationUIState.value = registrationUIState.value.copy(
+                signupUIState.value = signupUIState.value.copy(
                     firstName = event.firstName
                 )
                 printState()
             }
             is SignupUIEvent.LastNameChanged -> {
-                registrationUIState.value = registrationUIState.value.copy(
+                signupUIState.value = signupUIState.value.copy(
                     lastName = event.lastName
                 )
                 printState()
             }
             is SignupUIEvent.EmailChanged -> {
-                registrationUIState.value = registrationUIState.value.copy(
+                signupUIState.value = signupUIState.value.copy(
                     email = event.email
                 )
                 printState()
             }
             is SignupUIEvent.PasswordChanged -> {
-                registrationUIState.value = registrationUIState.value.copy(
+                signupUIState.value = signupUIState.value.copy(
                     password = event.password
                 )
                 printState()
@@ -50,7 +49,7 @@ class SignupViewModel : ViewModel() {
                 signUp()
             }
             is SignupUIEvent.PrivacyPolicyCheckBoxClicked -> {
-                registrationUIState.value = registrationUIState.value.copy(
+                signupUIState.value = signupUIState.value.copy(
                     privacyPolicyAccepted = event.status
                 )
             }
@@ -64,16 +63,16 @@ class SignupViewModel : ViewModel() {
         Log.d(TAG,"Inside_Sign up")
         printState()
         createUserInFirebase(
-            email = registrationUIState.value.email,
-            password = registrationUIState.value.password)
+            email = signupUIState.value.email,
+            password = signupUIState.value.password)
     }
 
     private fun validateDatawithRules() {
-        val fNameResult = Validator.validateFirstName(fName = registrationUIState.value.firstName)
-        val lNameResult = Validator.validateLastName(lName = registrationUIState.value.lastName)
-        val emailResult = Validator.validateEmail(email = registrationUIState.value.email)
-        val passwordResult = Validator.validatePassword(password = registrationUIState.value.password)
-        val privacyPolicyResult = Validator.validatePrivacypolicyAcceptance(statusValue = registrationUIState.value.privacyPolicyAccepted)
+        val fNameResult = Validator.validateFirstName(fName = signupUIState.value.firstName)
+        val lNameResult = Validator.validateLastName(lName = signupUIState.value.lastName)
+        val emailResult = Validator.validateEmail(email = signupUIState.value.email)
+        val passwordResult = Validator.validatePassword(password = signupUIState.value.password)
+        val privacyPolicyResult = Validator.validatePrivacypolicyAcceptance(statusValue = signupUIState.value.privacyPolicyAccepted)
 
         Log.d(TAG,"Inside_validateDatawithRules")
         Log.d(TAG,"FirstName = $fNameResult")
@@ -82,7 +81,7 @@ class SignupViewModel : ViewModel() {
         Log.d(TAG,"Password = $passwordResult")
         Log.d(TAG,"privacyPolicy = $privacyPolicyResult")
 
-        registrationUIState.value = registrationUIState.value.copy(
+        signupUIState.value = signupUIState.value.copy(
             firstNameError = fNameResult.status,
             lastNameError = lNameResult.status,
             emailError = emailResult.status,
@@ -95,7 +94,7 @@ class SignupViewModel : ViewModel() {
 
     private fun printState(){
         Log.d(TAG,"Inside_PrintState")
-        Log.d(TAG,registrationUIState.value.toString())
+        Log.d(TAG,signupUIState.value.toString())
 
     }
 

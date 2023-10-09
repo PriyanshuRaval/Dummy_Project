@@ -19,6 +19,6 @@
     <string name="login">Login</string>
     <string name="home">Home</string>
     <string name="logout">Logout</string>
-    <string name="Forget_text">Don\'t Worry, You can create password for forgotten</string>
+    <string name="Forget_text">Don\'t Worry, You can create password for forgotten one</string>
     <string name="send_password_link">Send Password Link</string>
 </resources>

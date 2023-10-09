@@ -1,6 +1,6 @@
-package com.example.mysplashscreen.data
+package com.example.mysplashscreen.data.signup
 
-data class RegistrationUIState(
+data class SignupUIState(
     var firstName : String = "",
     var lastName : String = "",
     var email : String = "",

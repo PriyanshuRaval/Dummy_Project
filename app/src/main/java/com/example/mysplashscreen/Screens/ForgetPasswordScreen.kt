@@ -27,6 +27,9 @@ import com.example.mysplashscreen.components.NormalTextComponent
 import com.example.mysplashscreen.data.forget.ForgetUIEvent
 import com.example.mysplashscreen.data.forget.ForgetViewModel
 import com.example.mysplashscreen.data.login.LoginUIEvent
+import com.example.mysplashscreen.navigation.PostOfficeAppRouter
+import com.example.mysplashscreen.navigation.Screen
+import com.example.mysplashscreen.navigation.SystemBackButtonHandler
 
 @Composable
 fun ForgetPasswordScreen(forgetViewModel: ForgetViewModel = viewModel()){
@@ -75,6 +78,10 @@ fun ForgetPasswordScreen(forgetViewModel: ForgetViewModel = viewModel()){
                 )
             }
         }
+    }
+
+    SystemBackButtonHandler {
+        PostOfficeAppRouter.navigate_to(Screen.LoginScreen)
     }
 }
 
